@@ -2,12 +2,11 @@
 
 namespace GeneralPurposeIO\PWM;
 
-use Fabricate\MagicAliases\MagicAlias;
-use GeneralPurposeIO\Contracts\PWM\PWMCommunicationAdapter as CommunicationAdapter;
+use Voyager\MagicAliases\MagicAlias;
 
 /**
  * @method static void extend(string $name, callable $callback)
- * @method static CommunicationAdapter adapter(string $name)
+ * @method static PWMConnectionDriver driver(?string $name = null)
  */
 class PWM extends MagicAlias
 {
