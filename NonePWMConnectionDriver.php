@@ -3,7 +3,6 @@
 namespace GeneralPurposeIO\PWM;
 
 use GeneralPurposeIO\Contracts\PWM\PWMException;
-use GeneralPurposeIO\Contracts\PWM\PWMTransport;
 
 /** The driver an app gets when no adapter package is configured: every open attempt says so. */
 class NonePWMConnectionDriver extends PWMConnectionDriver
@@ -17,4 +16,7 @@ class NonePWMConnectionDriver extends PWMConnectionDriver
     {
         throw PWMException::noDriverConfigured();
     }
+
+    /** newConnection() never succeeds, so there is never a handle to close. */
+    protected function closeConnection(mixed $handle): void {}
 }
