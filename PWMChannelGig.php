@@ -3,10 +3,10 @@
 namespace GeneralPurposeIO\PWM;
 
 use GeneralPurposeIO\Contracts\NutsAndBolts\BusJob;
-use Voyager\Contracts\IOPools\ShouldPool;
+use Voyager\Contracts\IOPools\WorkerPools\ShouldPool;
 
 /**
- * One channel job, wherever the work target runs it. The worker builds the driver by class from the caller's worker
+ * One channel job, wherever the worker pool runs it. The worker builds the driver by class from the caller's worker
  * arguments, so it reaches the same hardware, and connects the chip itself. The caller exported the channel before
  * it could offload, so the worker only opens it. One driver per class and arguments per process: a worker keeps its
  * chips open between gigs.

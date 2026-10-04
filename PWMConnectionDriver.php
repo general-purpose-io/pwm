@@ -108,12 +108,11 @@ abstract class PWMConnectionDriver
     }
 
     /**
-     * A PWMChannelGig to the named work target, or to the configured one. An in-process target (sync, defer) runs it
-     * on a worker-side driver built from the same arguments, as a worker would.
+     * A PWMChannelGig to the named worker pool, or to the default one.
      */
-    protected function dispatch(string|int $device, int $channel, BusJob $job, ?string $target, Loop $loop, BusQueue $queue): Promise
+    protected function dispatch(string|int $device, int $channel, BusJob $job, ?string $pool, Loop $loop, BusQueue $queue): Promise
     {
-        return $this->runGig(new PWMChannelGig(static::class, $this->workerArguments(), $device, $channel, $job), $target);
+        return $this->runGig(new PWMChannelGig(static::class, $this->workerArguments(), $device, $channel, $job), $pool);
     }
 
     protected function protocolException(): string

@@ -12,7 +12,7 @@ final class OffloadedPWMTransport implements OffloadedPWM
 {
     public function __construct(
         private readonly PWMTransport $transport,
-        private readonly ?string $target,
+        private readonly ?string $pool,
     ) {}
 
     public function getPeriod(): Promise
@@ -57,6 +57,6 @@ final class OffloadedPWMTransport implements OffloadedPWM
 
     public function run(BusJob $job): Promise
     {
-        return $this->transport->offload($job, $this->target);
+        return $this->transport->offload($job, $this->pool);
     }
 }

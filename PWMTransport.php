@@ -46,19 +46,19 @@ abstract class PWMTransport implements TransportContract
         return $this;
     }
 
-    public function via(?string $target = null): OffloadedPWMTransport
+    public function via(?string $pool = null): OffloadedPWMTransport
     {
         $this->ensureOffloadable();
 
-        return new OffloadedPWMTransport($this, $target);
+        return new OffloadedPWMTransport($this, $pool);
     }
 
     /** Wire-internal: how a via() handle queues a job, checked again at every call so a handle outlives nothing. */
-    public function offload(BusJob $job, ?string $target): Promise
+    public function offload(BusJob $job, ?string $pool): Promise
     {
         $this->ensureOffloadable();
 
-        return $this->driver->offload($this->device, $this->channel, $job, $target);
+        return $this->driver->offload($this->device, $this->channel, $job, $pool);
     }
 
     /** Queued jobs for this channel are rejected, a running one finishes, then the channel closes. */
